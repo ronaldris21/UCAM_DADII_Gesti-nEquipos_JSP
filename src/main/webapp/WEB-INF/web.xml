@@ -43,4 +43,14 @@
     <servlet-name>ControlJugadores</servlet-name>
     <url-pattern>/Jugadores</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ControlClubes</display-name>
+    <servlet-name>ControlClubes</servlet-name>
+    <servlet-class>edu.ucam.servlets.ControlClubes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControlClubes</servlet-name>
+    <url-pattern>/Clubes</url-pattern>
+  </servlet-mapping>
 </web-app>

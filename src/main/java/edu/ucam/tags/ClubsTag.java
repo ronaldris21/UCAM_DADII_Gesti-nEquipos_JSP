@@ -1,13 +1,14 @@
 package edu.ucam.tags;
-
 import java.io.IOException;
 
+import edu.ucam.dao.session.ClubSessionDAO;
 import edu.ucam.dao.session.JugadorSessionDAO;
+import edu.ucam.domain.Club;
+import edu.ucam.domain.Jugador;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
-import edu.ucam.domain.Jugador;
 
-public class JugadoresTag extends TagSupport {
+public class ClubsTag extends TagSupport {
 
 	/**
 	 * 
@@ -17,20 +18,19 @@ public class JugadoresTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		
-		String controllerName = "Jugadores";
-		String idName = "id-jugador";
+		String controllerName = "Clubes";
+		String idName = "id-club";
 		
-		JugadorSessionDAO dao = new JugadorSessionDAO(this.pageContext.getSession());
-		for (Jugador j : dao.getAll() ) {
+		ClubSessionDAO dao = new ClubSessionDAO(this.pageContext.getSession());
+		for (Club c : dao.getAll() ) {
 			try {
 				pageContext.getOut().print("<tr>");
 				
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getNombre()));
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getApellidos()));
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getGoles()));
+				pageContext.getOut().print(String.format("<td> %s </td>", c.getNombre()));
+				pageContext.getOut().print(String.format("<td> %s </td>", c.getImg()));
 				pageContext.getOut().print(String.format("<td> <a href=\"%s?action=edit&%s=%s\" class=\"btn btn-primary\" >Editar</a>  <a href=\"%s?action=delete&%s=%s\" class=\"btn btn-danger\" >Borrar</a> </td>", 
-																controllerName, idName, j.getId(),
-																controllerName, idName, j.getId()));
+																controllerName, idName, c.getId(),
+																controllerName, idName, c.getId()));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
