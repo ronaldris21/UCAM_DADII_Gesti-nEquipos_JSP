@@ -23,7 +23,7 @@
 	<tags:Control_Login>
 	 <ul class="navbar-nav ml-auto">
 	   <li class="nav-item">
-	     	<a class="nav-link" href="<%= request.getContextPath()%>/Control?accion=logout"><i class="bi bi-box-arrow-in-left">Logout</i></a>
+	     	<a class="nav-link" href="<%= request.getContextPath()%>/Control?action=logout"><i class="bi bi-box-arrow-in-left">Logout</i></a>
 	   </li>
 	   <li>
 	   		<a class="nav-link" href="<%= request.getContextPath()%>/myUser.jsp"> <i class="bi bi-person-circle">Mi usuario</i> </a>
