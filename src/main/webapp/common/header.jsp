@@ -36,7 +36,7 @@
 	<ul class="navbar-nav ml-auto">
 	   
 	   <li>
-	   		<a class="nav-link" href="<%= request.getContextPath()%>/login.jsp"> <i class="bi bi-person-circle">Iniciar Sesiï¿½n</i> </a>
+	   		<a class="nav-link" href="<%= request.getContextPath()%>/login.jsp"> <i class="bi bi-person-circle">Iniciar Sesión</i> </a>
 	   </li>
 	 </ul>
 	</tags:Control_Not_Login>

@@ -6,7 +6,6 @@ import edu.ucam.dao.DAO;
 import edu.ucam.domain.Jugador;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 public class JugadorServletDAO implements DAO<Jugador>{
 	private static int idCounter=1;
@@ -20,7 +19,7 @@ public class JugadorServletDAO implements DAO<Jugador>{
 
 	}
 
-	
+
 	public JugadorServletDAO(ServletContext context) {
 		this.context = context;
 		if(context.getAttribute(JUGADORES)==null)

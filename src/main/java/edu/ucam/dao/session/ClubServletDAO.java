@@ -18,13 +18,13 @@ public class ClubServletDAO implements DAO<Club>{
 		if(context.getAttribute(CLUBS)==null)
 			context.setAttribute(CLUBS, new ArrayList<Club>());
 	}
-	
+
 	public ClubServletDAO(ServletContext context) {
 		this.context = context;
 		if(context.getAttribute(CLUBS)==null)
 			context.setAttribute(CLUBS, new ArrayList<Club>());
 	}
-	
+
 
 	@Override
 	public ArrayList<Club> getAll() {
@@ -49,7 +49,7 @@ public class ClubServletDAO implements DAO<Club>{
 		boolean borrado =  clubs.removeIf(c-> c.getId()==id);
 		if(borrado)
 			context.setAttribute(CLUBS, clubs);
-		
+
 		return borrado;
 	}
 

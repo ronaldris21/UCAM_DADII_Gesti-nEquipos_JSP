@@ -27,18 +27,18 @@ public class UsuariosTag extends TagSupport {
 
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getNombre()));
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getContrasena()));
-				
+
 				///ACCIONES
 				pageContext.getOut().print(String.format("<td> "
 						+ "<a href=\"%s?action=edit&%s=%s\" class=\"btn btn-primary\" >Editar</a> ",
 								controllerName, idName, j.getId()));
 
-				
+
 				///MODIFICAR ESTO SEGUN CONVENIENCIA
 				String datosObjeto = j.getNombre() ;
 				String urlDelete = controllerName+"?action=delete&"+idName+"="+j.getId();
 
-				
+
 				pageContext.getOut().print(String.format("<a href=\"#\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#confirmDeleteModal\" data-datos=\"%s\" data-url-delete=\"%s\">Borrar</a>",
 						datosObjeto, urlDelete));
 
