@@ -55,6 +55,28 @@
 </div>
 
 
+<!-- Modal de confirmación -->
+<div class="modal " tabindex="-1" role="dialog" id="confirmDeleteModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar eliminación</h5>
+      </div>
+      <div class="modal-body">
+      	
+        ¿Estás seguro que deseas eliminar a <span id="modal-content-message" style="font-weight: bold;">  </span> ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="deleteButton">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <%@ include file="common/footer.jsp" %>
 
 </body>

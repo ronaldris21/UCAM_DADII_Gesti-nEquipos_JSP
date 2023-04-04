@@ -10,5 +10,5 @@ public class AccionLogout extends Accion{
 		System.out.println("Atributo removido");
 		return "login.html";
 	}
-	
+
 }

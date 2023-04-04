@@ -8,12 +8,12 @@ public class AccionLogin extends Accion{
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
 		String pageFinal = "login.html";
-		
-		
+
+
 		//TODO: Analizar que el usuario exista en un base de datos o contexto!
 		String email = request.getParameter("username").toString();
 		String password =  request.getParameter("password").toString();
-		
+
 		if(email!=null && password!= null)
 			if(email.equals(password))
 			{
@@ -27,11 +27,11 @@ public class AccionLogin extends Accion{
 				 * 1/2 Maybe
 				 */
 			}
-		
-		
+
+
 		return pageFinal;
-		
-		
+
+
 	}
 
 }

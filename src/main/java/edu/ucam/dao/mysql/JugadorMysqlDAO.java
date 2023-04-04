@@ -1,9 +1,8 @@
 package edu.ucam.dao.mysql;
-import edu.ucam.domain.Jugador;
-
 import java.util.ArrayList;
 
 import edu.ucam.dao.DAO;
+import edu.ucam.domain.Jugador;
 
 public class JugadorMysqlDAO implements DAO<Jugador> {
 

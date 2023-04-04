@@ -3,9 +3,7 @@ package edu.ucam.dao.session;
 import java.util.ArrayList;
 
 import edu.ucam.dao.DAO;
-import edu.ucam.domain.Club;
 import edu.ucam.domain.Jugador;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 public class JugadorSessionDAO implements DAO<Jugador>{
@@ -17,7 +15,7 @@ public class JugadorSessionDAO implements DAO<Jugador>{
 		this.session = session;
 		if(session.getAttribute(JUGADORES)==null)
 			session.setAttribute(JUGADORES, new ArrayList<Jugador>());
-		
+
 	}
 
 	@Override
@@ -37,21 +35,21 @@ public class JugadorSessionDAO implements DAO<Jugador>{
 
 	@Override
 	public boolean delete(int id) {
-		
+
 		ArrayList<Jugador> jugadores = getAll();
-		
+
 		boolean borrado =  jugadores.removeIf(c-> c.getId()==id);
 		if(borrado)
 			session.setAttribute(JUGADORES, jugadores);
-		
+
 		return borrado;
 	}
 
 	@Override
 	public boolean update(int id, Jugador objNuevo) {
-		
+
 		objNuevo.setId(id);
-		
+
 		if(delete(id))
 		{
 			ArrayList<Jugador> jugadores = getAll();
@@ -65,7 +63,7 @@ public class JugadorSessionDAO implements DAO<Jugador>{
 	@Override
 	public boolean insert(Jugador objNuevo) {
 		objNuevo.setId(idCounter++);
-		
+
 		ArrayList<Jugador> jugadores = getAll();
 		jugadores.add(objNuevo);
 		session.setAttribute(JUGADORES, jugadores);

@@ -1,14 +1,14 @@
-// 
+//
 // Decompiled by Procyon v0.5.36
-// 
+//
 
 package edu.ucam.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.io.Serializable;
 /**
- * <p> 
+ * <p>
  * Esta es la clase en la que se crean los clubes
  * </p>
  */
@@ -19,18 +19,18 @@ public class Club implements Serializable
     private String nombre;
     private String img;
     private Hashtable<Integer, Jugador> jugadores;
-    
+
     public Club() {
-        this.jugadores = new Hashtable<Integer, Jugador>();
+        this.jugadores = new Hashtable<>();
     }
-    
+
     public Club(final int id, final String nombre) {
-        this.jugadores = new Hashtable<Integer, Jugador>();
+        this.jugadores = new Hashtable<>();
         this.id = id;
         this.nombre = nombre;
     }
     public Club(final int id, final String nombre, final String img) {
-        this.jugadores = new Hashtable<Integer, Jugador>();
+        this.jugadores = new Hashtable<>();
         this.id = id;
         this.nombre = nombre;
         this.img = img;
@@ -38,24 +38,24 @@ public class Club implements Serializable
     public int getId() {
         return this.id;
     }
-    
+
     public void setId(final int id) {
         this.id = id;
     }
-    
-    
+
+
     public String getNombre() {
         return this.nombre;
     }
-    
+
     public void setNombre(final String nombre) {
         this.nombre = nombre;
     }
-    
+
     public String getImg() {
         return this.img;
     }
-    
+
     public void setImg(final String img) {
         this.img = img;
     }
@@ -93,7 +93,7 @@ public class Club implements Serializable
      * Obtiene jugadores del ArrayList jugador
      */
     public ArrayList<Jugador> getJugadores() {
-        final ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+        final ArrayList<Jugador> jugadores = new ArrayList<>();
         for (final Jugador jugador : this.jugadores.values()) {
             jugadores.add(jugador);
         }
@@ -102,7 +102,8 @@ public class Club implements Serializable
     /**
      * Devuelve un string
      */
-    public String toString()
+    @Override
+	public String toString()
     {
     	return String.format("\tClub %s: %s \n", id, nombre) ;
     }

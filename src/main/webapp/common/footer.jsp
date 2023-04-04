@@ -3,6 +3,20 @@
 
 
 
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#confirmDeleteModal').on('shown.bs.modal', function(e) {
+	    var urlDelete = $(e.relatedTarget).data('url-delete');
+	    $('#deleteButton').click(function() {
+	      window.location.href = urlDelete ;
+	    });
+	    
+	    var mensaje = $(e.relatedTarget).data('datos');
+	    $('#modal-content-message').text(mensaje)
+	  });
+	});
+
+</script>
 
 <script type="text/javascript">
 var searchInput = document.getElementById("searchInput");
