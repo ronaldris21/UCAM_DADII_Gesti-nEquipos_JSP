@@ -22,9 +22,12 @@
 					<form action="Clubes?action=<%=request.getAttribute("nombre") != null ? "editSave" : "new"%>" method="post">
 						<h2><%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%></h2>
 						<input type="hidden" name="id-club" value="<%= request.getParameter("id-club") %>">
-						Nombre: <input type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : ""%>"> <br>
-						Imagen: <input type="text" name="img" value="<%=request.getAttribute("img") != null ? request.getAttribute("img") : ""%>"> <br>
+						Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : ""%>"> <br>
+						Imagen: <input required type="text" name="img" value="<%=request.getAttribute("img") != null ? request.getAttribute("img") : ""%>"> <br>
 						<input type="submit" value="<%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%>  club" >
+						
+						<tags:RequestErrorMessageTag></tags:RequestErrorMessageTag>
+		
 					</form>
 			</aside>
 			
@@ -48,6 +51,8 @@
 			</main>
 		</div>
 		
+		
+		<%@ include file="common/modal.jsp" %>
 		
 		<%@ include file="common/footer.jsp" %>
 			            

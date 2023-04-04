@@ -7,8 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Hashtable;
 
-import edu.ucam.dao.session.ClubSessionDAO;
-import edu.ucam.dao.session.JugadorSessionDAO;
+import edu.ucam.dao.session.ClubServletDAO;
 import edu.ucam.domain.Club;
 import edu.ucam.domain.Jugador;
 
@@ -33,7 +32,7 @@ public class ControlClubes extends HttpServlet {
 		Hashtable<String,Club> data = null;
 		Club c;
 		String id;
-		ClubSessionDAO dao = new ClubSessionDAO(request.getSession());
+		ClubServletDAO dao = new ClubServletDAO(request);
 		
 		switch (action) {
 		case "new": 

@@ -8,7 +8,7 @@ public class AccionLogout extends Accion{
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().removeAttribute("EMAIL_LOGIN");
 		System.out.println("Atributo removido");
-		return "login.html";
+		return "login.jsp";
 	}
 
 }

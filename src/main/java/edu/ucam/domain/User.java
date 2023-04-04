@@ -7,43 +7,41 @@ import java.io.Serializable;
  * </p>
  */
 public class User implements Serializable{
-    public User(String nombre, String contrasena) {
-		super();
+	
+	private static final long serialVersionUID = 1L;
+	
+	private int id;
+	private String nombre;
+	private String contrasena;
+	
+
+
+    public User(int id, String nombre, String contrasena) {
+    	this.id = id;
 		this.nombre = nombre;
 		this.contrasena = contrasena;
 	}
-
-
-
-	private static final long serialVersionUID = 1L;
-    private String nombre;
-    private String contrasena;
-	
-    
-    
 	public User() {
 		
 	}
-
-
-
+    
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public String getContrasena() {
 		return contrasena;
 	}
-
-
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;

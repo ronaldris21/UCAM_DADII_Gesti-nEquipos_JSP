@@ -29,4 +29,14 @@
         <tag-class>edu.ucam.tags.ClubsTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
+     <tag>
+        <name>UsuariosTableBody</name>
+        <tag-class>edu.ucam.tags.UsuariosTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+     <tag>
+        <name>RequestErrorMessageTag</name>
+        <tag-class>edu.ucam.tags.RequestErrorMessageTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
 </taglib>

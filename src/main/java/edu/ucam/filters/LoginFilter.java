@@ -52,9 +52,9 @@ public class LoginFilter extends HttpFilter implements Filter {
 
 		if(req.getSession().getAttribute("EMAIL_LOGIN")==null)
 		{
-			((HttpServletResponse)response).sendRedirect(req.getContextPath()+ "/login.html");
-			System.out.println("SendRedirect to login.html");
-			//req.getRequestDispatcher("login.html").forward(req, response);
+			((HttpServletResponse)response).sendRedirect(req.getContextPath()+ "/login.jsp");
+			System.out.println("SendRedirect to login.jsp");
+			//req.getRequestDispatcher("login.jsp").forward(req, response);
 		}
 		else
 		{

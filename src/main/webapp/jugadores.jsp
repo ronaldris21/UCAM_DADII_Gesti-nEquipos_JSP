@@ -22,13 +22,13 @@
 		<form action="Jugadores?action=<%=request.getAttribute("nombre") != null ? "editSave" : "new"%>" method="post">
 			<h2><%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%></h2>
 			<input type="hidden" name="id-jugador" value="<%= request.getParameter("id-jugador") %>">
-			Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : ""%>"> <br>
+			Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : "" %>"> <br>
 			Apellidos: <input required type="text" name="apellidos" value="<%=request.getAttribute("apellidos") != null ? request.getAttribute("apellidos") : ""%>"> <br>
 			Goles: <input type="number" name="goles" value="<%=request.getAttribute("goles") != null ? request.getAttribute("goles") : 0%>"> <br>
 			<input type="submit" value="<%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%>  jugador" >
 		
-			<p> <%= request.getAttribute("ERROR_REQUEST") !=null ?  request.getAttribute("ERROR_REQUEST"): ""%>  </p>
-			<%= request.getAttribute("ERROR_REQUEST") == null ? "<br>" : request.getAttribute("ERROR_REQUESTr") %>
+			<tags:RequestErrorMessageTag/>
+		
 		</form>
 	</aside>
 	
@@ -55,25 +55,7 @@
 </div>
 
 
-<!-- Modal de confirmación -->
-<div class="modal " tabindex="-1" role="dialog" id="confirmDeleteModal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Confirmar eliminación</h5>
-      </div>
-      <div class="modal-body">
-      	
-        ¿Estás seguro que deseas eliminar a <span id="modal-content-message" style="font-weight: bold;">  </span> ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" id="deleteButton">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%@ include file="common/modal.jsp" %>
 
 
 

@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="misTags" prefix="tags" %>    
+    
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
@@ -23,13 +26,14 @@
                 <input id="password"  type="password" name="password"  placeholder="*********" class="input input-password">
                 
                 <input type="submit" value="Iniciar Sesión" class="primary-btn login-btn">
+                
+                <tags:RequestErrorMessageTag/>
             </form>
 
 
         </div>
     </div>
     
-
 
 </body>
 </html>

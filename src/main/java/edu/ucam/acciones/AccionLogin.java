@@ -7,7 +7,7 @@ public class AccionLogin extends Accion{
 
 	@Override
 	public String ejecutar(HttpServletRequest request, HttpServletResponse response) {
-		String pageFinal = "login.html";
+		String pageFinal = "login.jsp";
 
 
 		//TODO: Analizar que el usuario exista en un base de datos o contexto!

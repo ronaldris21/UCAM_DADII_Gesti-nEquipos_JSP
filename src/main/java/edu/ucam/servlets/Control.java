@@ -3,6 +3,8 @@ package edu.ucam.servlets;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import org.apache.el.stream.Optional;
+
 import edu.ucam.acciones.Accion;
 import edu.ucam.acciones.AccionLogin;
 import edu.ucam.acciones.AccionLogout;
@@ -13,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Hashtable;
 import edu.ucam.acciones.*;
-import edu.ucam.dao.session.ClubSessionDAO;
+import edu.ucam.dao.session.UsersServletDAO;
 import edu.ucam.domain.Club;
 import edu.ucam.domain.User;
 
@@ -55,36 +57,41 @@ public class Control extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Entra en el doGet");
 		String action = request.getParameter("action");
+		if(action==null)
+			action= "null";
+		
 		String jsp = "usuarios.jsp";
 		Hashtable<String,User> data = null;
-		Club c;
+		User u;
 		String id;
-		ClubSessionDAO dao = new ClubSessionDAO(request.getSession());
+		UsersServletDAO dao = new UsersServletDAO(request);
 		
 		switch (action) {
 		case "login":
-			jsp = "login.html";
+			jsp = "login.jsp";
 			
 			
 			//TODO: Analizar que el usuario exista en un base de datos o contexto!
 			String email = request.getParameter("username").toString();
 			String password =  request.getParameter("password").toString();
-			
 			if(email!=null && password!= null)
-				if(email.equals(password))
+			{
+				for(User uu : dao.getAll())
 				{
-					jsp="index.jsp";
-					request.getSession().setAttribute("EMAIL_LOGIN", email);
-					System.out.println("\tLOGIN SUCCESSFUL "+request.getSession().getAttribute("EMAIL_LOGIN"));
-					response.sendRedirect(jsp);
-					return ;
-					///TODO: REDIRECT AFTER LOGIN - Maybe
-					/*
-					 * When a user tried to do something without being logged in.
-					 * Rediredt to login, the to the previous action, if possible??
-					 * 1/2 Maybe
-					 */
+					if(uu.getContrasena().equals(password) && uu.getNombre().equals(email))
+					{
+						jsp="index.jsp";
+						request.getSession().setAttribute("EMAIL_LOGIN", email);
+						System.out.println("\tLOGIN SUCCESSFUL "+request.getSession().getAttribute("EMAIL_LOGIN"));
+						response.sendRedirect(jsp);
+						return ;
+					}
 				}
+				
+				
+				
+			}
+			request.setAttribute("ERROR_REQUEST", "Credenciales inválidas");
 			break;
 		case "logout":
 				request.getSession().removeAttribute("EMAIL_LOGIN");
@@ -94,64 +101,72 @@ public class Control extends HttpServlet {
 		case "new": 
 			
 			String name = request.getParameter("nombre");
-			String imagen = request.getParameter("contrasena");
-			c = new Club(0, name, imagen);
+			String contra = request.getParameter("contrasena");
+			u = new User(0, name, contra);
 			System.out.println("new");
-			if (name.equals("") || imagen.equals("")) {
-				request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre ni la imagen en blanco");
+			if (name.equals("") || contra.equals("")) {
+				request.setAttribute("ERROR_REQUEST", "No puedes dejar el usuario ni la contraseña en blanco");
 				break;
 			}
 			
 			
 			
-			if(dao.insert(c)) {
+			if(dao.insert(u)) {
 				System.out.println("Inserta");
 				response.sendRedirect(jsp);
-			return;
+				return;
+			}
+			else
+			{
+				request.setAttribute("ERROR_REQUEST", "Ya existe un usuario así, no es posible agregar");
 			}
 			break;
 		case "edit": 
 			
-			id = request.getParameter("id-club");
+			id = request.getParameter("id-user");
 			
-			c = dao.getById(Integer.valueOf(id));
-			if(c!=null)
+			u = dao.getById(Integer.valueOf(id));
+			if(u!=null)
 			{
-				request.setAttribute("id",c.getId());
-				request.setAttribute("nombre",c.getNombre());
-				request.setAttribute("img",c.getImg());
+				request.setAttribute("id-user",u.getId());
+				request.setAttribute("nombre",u.getNombre());
+				request.setAttribute("contrasena",u.getContrasena());
 				
 			}
 			break;
 			
 			case "editSave": 
 			
-				id = request.getParameter("id-club");
-				System.out.println("Guardar cambios id-jugador: "+id );
+				id = request.getParameter("id-user");
+				System.out.println("Guardar cambios id-user: "+id );
 				
-				c = dao.getById(Integer.valueOf(id));
-				if (c!=null) {
-					c.setNombre(request.getParameter("nombre"));
-					c.setImg(request.getParameter("img"));
+				u = dao.getById(Integer.valueOf(id));
+				if (u!=null) {
+					u.setNombre(request.getParameter("nombre"));
+					u.setContrasena(request.getParameter("contrasena"));
 					
-					if (c.getNombre().equals("") || c.getImg().equals("")) {
-						request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre nila imagen en blanco");
-						jsp = "Jugadores?action=edit&id-jugador="+c.getId();
+					if (u.getNombre().equals("") || u.getContrasena().equals("")) {
+						request.setAttribute("ERROR_REQUEST", "No puedes dejar el usuario ni la contraseña en blanco");
+						jsp = "Jugadores?action=edit&id-user="+u.getId();
 						break;
 					}
 					
-					dao.update(Integer.valueOf(id), c);
+					dao.update(Integer.valueOf(id), u);
 				}
 				//Listo para ser redirigido
 			break;
 		case "delete": 
-			id = request.getParameter("id-club");
+			id = request.getParameter("id-user");
 			
 			dao.delete(Integer.valueOf(id));
 			
 			break;
+			
+		case "null":
+			jsp="login.jsp";
+			break;
 		default:
-			jsp="jugadores.jsp";
+			jsp="usuarios.jsp";
 			
 		}
 		

@@ -2,12 +2,12 @@ package edu.ucam.tags;
 
 import java.io.IOException;
 
-import edu.ucam.dao.session.JugadorServletDAO;
-import edu.ucam.domain.Jugador;
+import edu.ucam.dao.session.UsersServletDAO;
+import edu.ucam.domain.User;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
-public class JugadoresTag extends TagSupport {
+public class UsuariosTag extends TagSupport {
 
 	/**
 	 *
@@ -17,18 +17,16 @@ public class JugadoresTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 
-		String controllerName = "Jugadores";
-		String idName = "id-jugador";
+		String controllerName = "Control";
+		String idName = "id-user";
 
-		JugadorServletDAO dao = new JugadorServletDAO(this.pageContext.getServletContext());
-		for (Jugador j : dao.getAll() ) {
+		UsersServletDAO dao = new UsersServletDAO(this.pageContext.getServletContext());
+		for (User j : dao.getAll() ) {
 			try {
 				pageContext.getOut().print("<tr>");
 
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getNombre()));
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getApellidos()));
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getGoles()));
-				
+				pageContext.getOut().print(String.format("<td> %s </td>", j.getContrasena()));
 				
 				///ACCIONES
 				pageContext.getOut().print(String.format("<td> "
@@ -37,7 +35,7 @@ public class JugadoresTag extends TagSupport {
 
 				
 				///MODIFICAR ESTO SEGUN CONVENIENCIA
-				String datosObjeto = j.getNombre() +" " +j.getApellidos() ;
+				String datosObjeto = j.getNombre() ;
 				String urlDelete = controllerName+"?action=delete&"+idName+"="+j.getId();
 
 				
