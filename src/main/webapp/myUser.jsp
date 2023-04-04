@@ -13,5 +13,10 @@
 
 <h1>Mi usuario</h1>
 
+<tags:Control_Login>
+
+
+</tags:Control_Login>
+
 </body>
 </html>

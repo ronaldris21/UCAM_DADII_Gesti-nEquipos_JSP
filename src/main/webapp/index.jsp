@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="misTags" prefix="tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +17,14 @@
 
 <jsp:include page="common/header.jsp"/>
 
-<button class="btn-close"></button>
-<h1>BIENVENIDO  <% out.print(request.getSession().getAttribute("EMAIL_LOGIN")!= null ? request.getSession().getAttribute("EMAIL_LOGIN").toString() : ""); %> </h1>
-<a href="Control?accion=logout">Cerrar Sesión</a>
 
+
+<tags:Control_Login>
+
+	<button class="btn-close"></button>
+	<h1>BIENVENIDO  <% out.print(request.getSession().getAttribute("EMAIL_LOGIN")!= null ? request.getSession().getAttribute("EMAIL_LOGIN").toString() : ""); %> </h1>
+	<a href="Control?accion=logout">Cerrar Sesión</a>
+
+</tags:Control_Login>
 </body>
 </html>
