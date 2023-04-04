@@ -1,0 +1,58 @@
+@charset "ISO-8859-1";
+
+
+#flex-container{
+	width: 90%;
+	margin: 0 auto;
+	display:flex;
+	justify-items: center;
+	justify-content: space-around;
+	flex-direction: row;
+}
+
+
+
+input{
+	width:100%;
+}
+
+aside
+{
+	width: 30%;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+main	
+{
+	width:65%;
+	margin: 0;
+	box-sizing: boder-box;
+	min-width: 400px;
+}
+
+@media (max-width: 800px)
+{
+	#flex-container{
+		flex-direction: column;
+	}
+	aside
+	{
+		width: 100%;
+	}
+	main
+	{
+		width: 100%;
+	}
+	
+}
+
+.btn{
+	margin: 4px;
+}
+
+#title-main
+{
+	margin: 0 auto;
+	text-align: center;
+}

@@ -1,0 +1,27 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>hola</short-name>
+	<uri>misTags</uri>
+	<description> Tags personalizadas </description>
+    <tag>
+        <name>Control_Admin</name>
+        <tag-class>edu.ucam.tags.TagControlAdmin</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+    <tag>
+        <name>Control_Login</name>
+        <tag-class>edu.ucam.tags.TagControlLogin</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+    <tag>
+        <name>Control_Not_Login</name>
+        <tag-class>edu.ucam.tags.TagControlNotLogin</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+    <tag>
+        <name>JugadoresTableBody</name>
+        <tag-class>edu.ucam.tags.JugadoresTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+</taglib>
