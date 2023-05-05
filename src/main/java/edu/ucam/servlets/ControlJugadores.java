@@ -3,7 +3,10 @@ package edu.ucam.servlets;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
 import edu.ucam.dao.session.JugadorServletDAO;
+import edu.ucam.domain.Club;
 import edu.ucam.domain.Jugador;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -35,7 +38,9 @@ public class ControlJugadores extends HttpServlet {
 		Hashtable<String,Jugador> data = null;
 		Jugador j;
 		String id;
-		JugadorServletDAO dao = new JugadorServletDAO(request);
+		
+		DAO<Jugador> dao = Singleton.factoryDataSource.getDaoJugador();
+		//JugadorServletDAO dao = new JugadorServletDAO(request);
 
 		switch (action) {
 		case "new":
