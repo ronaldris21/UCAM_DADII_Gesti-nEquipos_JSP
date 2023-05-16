@@ -27,16 +27,15 @@ INSERT INTO club (nombre) VALUES ('Real Madrid');
 INSERT INTO club (nombre) VALUES ('Barcelona');
 INSERT INTO club (nombre) VALUES ('Manchester United');
 
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Cristiano', 'Ronaldo', 0, 1);
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Sergio', 'Ramos', 0, 1);
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Luka', 'Modric', 0, 1);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Cristiano', 'Ronaldo', 6, 1);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Sergio', 'Ramos', 4, 1);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Luka', 'Modric', 2, 1);
 
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Lionel', 'Messi', 0, 2);
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Gerard', 'Pique', 0, 2);
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Sergio', 'Busquets', 0, 2);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Lionel', 'Messi', 5, 2);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Gerard', 'Pique', 6, 2);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Sergio', 'Busquets', 4, 2);
 
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Wayne', 'Rooney', 0, 3);
-INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Cristiano', 'Ronaldo', 0, 3);
+INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Wayne', 'Rooney', 7, 3);
 INSERT INTO jugador (nombre, apellidos, goles, club_id) VALUES ('Paul', 'Pogba', 0, 3);
 
 

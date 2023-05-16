@@ -22,9 +22,9 @@ public class ClubsTag extends TagSupport {
 		String controllerName = "Clubes";
 		String idName = "id-club";
 		
-		DAO<Club> dao = Singleton.getInstance().factoryDataSource.getDaoClub();
+		ArrayList<Club> clubs = Singleton.getInstance().factoryDataSource.getDaoClub().getAll();
 		ArrayList<Jugador> players = Singleton.getInstance().factoryDataSource.getDaoJugador().getAll();
-		for (Club c : dao.getAll() ) {
+		for (Club c : clubs ) {
 			try {
 				pageContext.getOut().print("<tr>");
 				
@@ -35,8 +35,13 @@ public class ClubsTag extends TagSupport {
 				pageContext.getOut().print(String.format("<td>"));
 				pageContext.getOut().print(String.format("<ul>"));
 				for (Jugador jugador : players) {
+					System.out.println("Club: "+ c.getId() + " - club Id: "+ jugador.getIdClub() + "  - Jugador : "+jugador.getId() );
 					if(jugador.getIdClub() == c.getId())
+					{
+						System.out.println("Club: "+ c.getId() + "  - Jugador : "+jugador.getId());
 						pageContext.getOut().print(String.format("<li> %s </li>", jugador.getNombre()+" "+jugador.getApellidos()));
+						
+					}
 				}
 				pageContext.getOut().print(String.format("</ul>"));
 				pageContext.getOut().print(String.format("</td>", c.getImg()));

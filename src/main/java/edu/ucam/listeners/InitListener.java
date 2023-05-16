@@ -1,6 +1,7 @@
 package edu.ucam.listeners;
 
 
+import edu.ucam.dao.DAO;
 import edu.ucam.dao.DAOSelector;
 import edu.ucam.dao.FactoryDataSource;
 import edu.ucam.dao.Singleton;
@@ -36,26 +37,33 @@ public class InitListener implements ServletContextListener {
     	System.out.println("CLASE: "+sce.getClass());
     	
     	//INICIAR FACTORY
-    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.SESSION, sce.getServletContext()); 
+    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.MYSQL, sce.getServletContext()); 
     	
-    	UsersServletDAO daoUsuarios = new UsersServletDAO(sce.getServletContext());
-    	daoUsuarios.insert(new User(0,"admin", "admin"));
-    	daoUsuarios.insert(new User(0,"RonaldRis21", "1234"));
-    	daoUsuarios.insert(new User(0,"pablo", "pablo"));
-    	
+    	DAO<User> daoUsuarios = Singleton.getInstance().factoryDataSource.getDaoUser();
+    	if(daoUsuarios.getAll().size() == 0)
+    	{
+    		System.out.println("Inicializar USERS por defecto");
+	    	daoUsuarios.insert(new User(1,"admin", "admin"));
+	    	daoUsuarios.insert(new User(2,"RonaldRis21", "1234"));
+	    	daoUsuarios.insert(new User(3,"pablo", "pablo"));
+    	}
 
     	
-    	ClubServletDAO daoClubs = new ClubServletDAO(sce.getServletContext());
-    	daoClubs.insert(new Club(1,"MADRID","null.png"));
+    	DAO<Club> daoClubs = Singleton.getInstance().factoryDataSource.getDaoClub(); 
+    	if(daoClubs.getAll()== null || daoClubs.getAll().size() == 0)
+    	{
+    		System.out.println("Inicializar CLUBS por defecto");
+    		daoClubs.insert(new Club(1,"MADRID","null.png"));
+    	}
     	
     	
-    	JugadorServletDAO daoJugadores = new JugadorServletDAO(sce.getServletContext());
-    	daoJugadores.insert(new Jugador(1, "Messi", "Ronald", 25,1));
+    	DAO<Jugador> daoJugadores = Singleton.getInstance().factoryDataSource.getDaoJugador();
+    	if(daoJugadores.getAll().size() == 0)
+    	{
+    		System.out.println("Inicializar JUGADOR por defecto");
+    		daoJugadores.insert(new Jugador(1, "Messi", "Ronald", 25,1));
+    	}
     	
-    	
-    	
-    	
-        // TODO Auto-generated method stub
     }
 
 	/**

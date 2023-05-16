@@ -3,22 +3,13 @@ package edu.ucam.servlets;
 import java.io.IOException;
 import java.util.Hashtable;
 
-import org.apache.el.stream.Optional;
 
-import edu.ucam.acciones.Accion;
-import edu.ucam.acciones.AccionLogin;
-import edu.ucam.acciones.AccionLogout;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Hashtable;
-import edu.ucam.acciones.*;
 import edu.ucam.dao.DAO;
 import edu.ucam.dao.Singleton;
-import edu.ucam.dao.session.UsersServletDAO;
-import edu.ucam.domain.Club;
 import edu.ucam.domain.User;
 
 /**
@@ -31,7 +22,6 @@ public class Control extends HttpServlet {
 
 	}
 
-	private Hashtable<String, Accion> acciones;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -152,7 +142,6 @@ public class Control extends HttpServlet {
 						jsp = "Jugadores?action=edit&id-user="+u.getId();
 						break;
 					}
-					
 					dao.update(Integer.valueOf(id), u);
 				}
 				//Listo para ser redirigido

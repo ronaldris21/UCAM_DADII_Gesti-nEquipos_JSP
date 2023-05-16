@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>Usuarios</title>
 
 <%@ include file="common/head.jsp" %>
 </head>

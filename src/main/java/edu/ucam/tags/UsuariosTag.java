@@ -2,6 +2,8 @@ package edu.ucam.tags;
 
 import java.io.IOException;
 
+import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
 import edu.ucam.dao.session.UsersServletDAO;
 import edu.ucam.domain.User;
 import jakarta.servlet.jsp.JspException;
@@ -20,7 +22,7 @@ public class UsuariosTag extends TagSupport {
 		String controllerName = "Control";
 		String idName = "id-user";
 
-		UsersServletDAO dao = new UsersServletDAO(this.pageContext.getServletContext());
+		DAO<User> dao = Singleton.getInstance().factoryDataSource.getDaoUser();
 		for (User j : dao.getAll() ) {
 			try {
 				pageContext.getOut().print("<tr>");

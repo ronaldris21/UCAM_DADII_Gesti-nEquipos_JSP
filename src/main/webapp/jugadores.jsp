@@ -25,7 +25,7 @@
 				<input type="hidden" name="id-jugador" value="<%= request.getParameter("id-jugador") %>">
 				Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : "" %>"> <br>
 				Apellidos: <input required type="text" name="apellidos" value="<%=request.getAttribute("apellidos") != null ? request.getAttribute("apellidos") : ""%>"> <br>
-				Goles: <input type="number" name="goles" value="<%=request.getAttribute("goles") != null ? request.getAttribute("goles") : 0%>"> <br>
+				Goles: <input type="number" min="0" name="goles" value="<%=request.getAttribute("goles") != null ? request.getAttribute("goles") : 0%>"> <br>
 				Club: 
 				<br>
 				<% Integer idClub = request.getAttribute("idClub") != null ?Integer.parseInt( request.getAttribute("idClub").toString()) : 0; %>
