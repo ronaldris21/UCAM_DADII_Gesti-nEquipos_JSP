@@ -26,7 +26,11 @@
 	     	<a class="nav-link" href="<%= request.getContextPath()%>/Control?action=logout"><i class="bi bi-box-arrow-in-left">Logout</i></a>
 	   </li>
 	   <li>
-	   		<a class="nav-link" href="<%= request.getContextPath()%>/myUser.jsp"> <i class="bi bi-person-circle">Mi usuario</i> </a>
+	   		<a class="nav-link" href="<%= request.getContextPath()%>/index.jsp"> 
+	   		<i class="bi bi-person-circle">
+	   		<%= request.getSession().getAttribute("EMAIL_LOGIN") == null ? "No hay sesión activa" : request.getSession().getAttribute("EMAIL_LOGIN")%>
+	   		</i> 
+	   		</a>
 	   </li>
 	 </ul>
 	</tags:Control_Login>
