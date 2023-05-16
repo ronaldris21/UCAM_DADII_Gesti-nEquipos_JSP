@@ -49,16 +49,23 @@ main
 
 .btn{
 	margin: 4px;
+	
 }
 
 #title-main
 {
 	font-size: 36px;
+	text-align: center;
 }
-
-tbody tr td:last-child {
-	background-color: blue;
+thead tr td:last-child {
+	
 	display: flex;
 	justify-content: flex-end;
-	gap: 12px;
+	
+}
+tbody tr td:last-child {
+	
+	display: flex;
+	justify-content: flex-end;
+	
 }

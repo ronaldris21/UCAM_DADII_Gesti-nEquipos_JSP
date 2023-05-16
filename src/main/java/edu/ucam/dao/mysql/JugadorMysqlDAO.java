@@ -23,7 +23,7 @@ public class JugadorMysqlDAO implements DAO<Jugador> {
 		Connection con =null;
 		try {
 			con = Singleton.getInstance().factoryDataSource.getConnection();
-			ps = con.prepareStatement("SELECT j.*, c.nombre as \"clubName\" FROM jugador as j JOIN club as c ON c.id = j.club_id ORDER BY j.goles DESC");
+			ps = con.prepareStatement("SELECT j.*, c.nombre as \"clubName\" FROM jugador as j left JOIN club as c ON c.id = j.club_id ORDER BY j.goles DESC");
 			rs = ps.executeQuery();		
 			
 			Jugador Jugador = null;
@@ -61,7 +61,7 @@ public class JugadorMysqlDAO implements DAO<Jugador> {
 		Connection con =null;
 		try {
 			con = Singleton.getInstance().factoryDataSource.getConnection();
-			ps = con.prepareStatement("SELECT j.*, c.nombre as \"clubName\" FROM jugador as j JOIN club as c ON c.id = j.club_id WHERE j.id = ?");
+			ps = con.prepareStatement("SELECT j.*, c.nombre as \"clubName\" FROM jugador as j left JOIN club as c ON c.id = j.club_id WHERE j.id = ?");
 			ps.setString(1, String.valueOf(id));
 			rs = ps.executeQuery();		
 			
@@ -133,7 +133,12 @@ public class JugadorMysqlDAO implements DAO<Jugador> {
 			ps.setString(1, Jugador.getNombre());
 			ps.setString(2, Jugador.getApellidos());
 			ps.setInt(3, Jugador.getGoles());
-			ps.setInt(4, Jugador.getIdClub());
+			if(Jugador.getIdClub()!=0) {
+				ps.setInt(4, Jugador.getIdClub());
+			}
+			else {
+				ps.setNull(4, java.sql.Types.INTEGER);
+			}
 			ps.setInt(5, Jugador.getId());
 			 ps.execute();
 			 System.out.println("Jugador editado");
@@ -163,7 +168,12 @@ public class JugadorMysqlDAO implements DAO<Jugador> {
 			ps.setString(1, Jugador.getNombre());
 			ps.setString(2, Jugador.getApellidos());
 			ps.setInt(3, Jugador.getGoles());
-			ps.setInt(4, Jugador.getIdClub());
+			if(Jugador.getIdClub()!=0) {
+				ps.setInt(4, Jugador.getIdClub());
+			}
+			else {
+				ps.setNull(4, java.sql.Types.INTEGER);
+			}
 			ps.execute();
 			System.out.println("Jugador Ingresado");
 			 return true;

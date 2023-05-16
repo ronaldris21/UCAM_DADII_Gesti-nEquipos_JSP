@@ -30,7 +30,8 @@ public class JugadoresTag extends TagSupport {
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getNombre()));
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getApellidos()));
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getGoles()));
-				pageContext.getOut().print(String.format("<td> %s </td>", j.getClubName()));
+				pageContext.getOut().print(String.format("<td>%s</td>", (j.getClubName() != null) ? j.getClubName() : "Sin equipo"));
+
 				
 				
 				///ACCIONES
