@@ -19,13 +19,13 @@
 		<h1 id="title-main">Usuarios registrados en el sistema</h1>
 		
 		<div id="flex-container">
-			<br>
 			<aside>
 					<form action="Control?action=<%=request.getAttribute("nombre") != null ? "editSave" : "new"%>" method="post">
 						<h2><%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%></h2>
 						<input type="hidden" name="id-user" value="<%= request.getParameter("id-user") %>">
 						Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : "" %>"> <br>
 						Contraseña: <input required type="password" name="contrasena" value="<%=request.getAttribute("contrasena") != null ? request.getAttribute("contrasena") : ""%>"> <br>
+						<br>
 						<input type="submit" value="<%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%>  usuario" >
 						
 						<tags:RequestErrorMessageTag/>

@@ -34,7 +34,8 @@ public class ControlClubes extends HttpServlet {
 		Hashtable<String,Club> data = null;
 		Club c;
 		String id;
-		DAO<Club> dao = Singleton.factoryDataSource.getDaoClub();
+		DAO<Club> dao = Singleton.getInstance().factoryDataSource.getDaoClub();
+		
 		
 		switch (action) {
 		case "new": 

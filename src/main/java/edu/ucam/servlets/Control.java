@@ -66,7 +66,7 @@ public class Control extends HttpServlet {
 		Hashtable<String,User> data = null;
 		User u;
 		String id;
-		DAO<User> dao = Singleton.factoryDataSource.getDaoUser();
+		DAO<User> dao = Singleton.getInstance().factoryDataSource.getDaoUser();
 		
 		switch (action) {
 		case "login":

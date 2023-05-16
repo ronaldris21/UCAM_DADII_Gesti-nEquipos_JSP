@@ -18,8 +18,11 @@ public class Jugador implements Serializable
     private String apellidos;
     private int goles;
     private int idClub;
+    private String clubName;
 
-    public Jugador() {
+   
+
+	public Jugador() {
     }
 
     public Jugador(final int id, final String nombre, final String apellidos, final int goles) {
@@ -76,6 +79,14 @@ public class Jugador implements Serializable
 
 	public void setIdClub(int idClub) {
 		this.idClub = idClub;
+	}
+	
+	public String getClubName() {
+		return clubName;
+	}
+
+	public void setClubName(String clubName) {
+		this.clubName = clubName;
 	}
 
     /**

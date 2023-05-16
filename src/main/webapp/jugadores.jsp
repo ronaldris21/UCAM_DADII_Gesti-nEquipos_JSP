@@ -19,7 +19,6 @@
 <tags:Control_Login>
 
 	<div id="flex-container">
-		<br>
 		<aside>
 			<form action="Jugadores?action=<%=request.getAttribute("nombre") != null ? "editSave" : "new"%>" method="post">
 				<h2><%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%></h2>
@@ -27,6 +26,14 @@
 				Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : "" %>"> <br>
 				Apellidos: <input required type="text" name="apellidos" value="<%=request.getAttribute("apellidos") != null ? request.getAttribute("apellidos") : ""%>"> <br>
 				Goles: <input type="number" name="goles" value="<%=request.getAttribute("goles") != null ? request.getAttribute("goles") : 0%>"> <br>
+				Club: 
+				<br>
+				<% Integer idClub = request.getAttribute("idClub") != null ?Integer.parseInt( request.getAttribute("idClub").toString()) : 0; %>
+				<tags:ClubSelectorTag idClubSelected="<%= idClub %>">
+				</tags:ClubSelectorTag>
+				
+				<br>				
+				<br>				
 				<input type="submit" value="<%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%>  jugador" >
 			
 				<tags:RequestErrorMessageTag/>
@@ -44,6 +51,7 @@
 		            <th scope="col">Nombre</th>
 		            <th scope="col">Apellidos</th>
 		            <th scope="col">Goles</th>
+		            <th scope="col">Club</th>
 		            <th scope="col">Acciones</th>
 		          </tr>
 		        </thead>

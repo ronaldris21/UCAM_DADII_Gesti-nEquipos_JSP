@@ -39,4 +39,13 @@
         <tag-class>edu.ucam.tags.RequestErrorMessageTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
+    <tag>
+        <name>ClubSelectorTag</name>
+        <tag-class>edu.ucam.tags.ClubSelectorTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>idClubSelected</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

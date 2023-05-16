@@ -1,8 +1,11 @@
 package edu.ucam.tags;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import edu.ucam.dao.session.ClubServletDAO;
+import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
 import edu.ucam.domain.Club;
+import edu.ucam.domain.Jugador;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
@@ -19,15 +22,24 @@ public class ClubsTag extends TagSupport {
 		String controllerName = "Clubes";
 		String idName = "id-club";
 		
-		ClubServletDAO dao = new ClubServletDAO(this.pageContext.getServletContext());
+		DAO<Club> dao = Singleton.getInstance().factoryDataSource.getDaoClub();
+		ArrayList<Jugador> players = Singleton.getInstance().factoryDataSource.getDaoJugador().getAll();
 		for (Club c : dao.getAll() ) {
 			try {
 				pageContext.getOut().print("<tr>");
 				
 				pageContext.getOut().print(String.format("<td> %s </td>", c.getNombre()));
 				pageContext.getOut().print(String.format("<td> %s </td>", c.getImg()));
+				//TODO: Imprimir Jugadores
 				
-
+				pageContext.getOut().print(String.format("<td>"));
+				pageContext.getOut().print(String.format("<ul>"));
+				for (Jugador jugador : players) {
+					if(jugador.getIdClub() == c.getId())
+						pageContext.getOut().print(String.format("<li> %s </li>", jugador.getNombre()+" "+jugador.getApellidos()));
+				}
+				pageContext.getOut().print(String.format("</ul>"));
+				pageContext.getOut().print(String.format("</td>", c.getImg()));
 
 				///ACCIONES
 				pageContext.getOut().print(String.format("<td> "

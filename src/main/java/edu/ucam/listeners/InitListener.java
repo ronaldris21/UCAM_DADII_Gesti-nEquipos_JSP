@@ -36,7 +36,7 @@ public class InitListener implements ServletContextListener {
     	System.out.println("CLASE: "+sce.getClass());
     	
     	//INICIAR FACTORY
-    	Singleton.factoryDataSource = new FactoryDataSource(DAOSelector.MYSQL, sce.getServletContext()); 
+    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.SESSION, sce.getServletContext()); 
     	
     	UsersServletDAO daoUsuarios = new UsersServletDAO(sce.getServletContext());
     	daoUsuarios.insert(new User(0,"admin", "admin"));
@@ -46,11 +46,11 @@ public class InitListener implements ServletContextListener {
 
     	
     	ClubServletDAO daoClubs = new ClubServletDAO(sce.getServletContext());
-    	daoClubs.insert(new Club(0,"MADRID","null.png"));
+    	daoClubs.insert(new Club(1,"MADRID","null.png"));
     	
     	
     	JugadorServletDAO daoJugadores = new JugadorServletDAO(sce.getServletContext());
-    	daoJugadores.insert(new Jugador(0, "Messi", "Ronald", 25));
+    	daoJugadores.insert(new Jugador(1, "Messi", "Ronald", 25,1));
     	
     	
     	

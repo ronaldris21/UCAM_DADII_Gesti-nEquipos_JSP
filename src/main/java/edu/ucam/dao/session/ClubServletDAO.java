@@ -3,7 +3,9 @@ package edu.ucam.dao.session;
 import java.util.ArrayList;
 
 import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
 import edu.ucam.domain.Club;
+import edu.ucam.domain.Jugador;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -48,24 +50,52 @@ public class ClubServletDAO implements DAO<Club>{
 
 		boolean borrado =  clubs.removeIf(c-> c.getId()==id);
 		if(borrado)
+		{
+			//Borrar los jugadores asociados
+			ArrayList<Jugador> players = Singleton.getInstance().factoryDataSource.getDaoJugador().getAll();
+			for (Jugador p : players) {
+				System.out.println("id antesss: "+p.getIdClub());
+				if(p.getIdClub() == id)
+				{
+					p.setIdClub(0);
+					Singleton.getInstance().factoryDataSource.getDaoJugador().update(p.getId(), p);
+				}
+			}
+			
+			players = Singleton.getInstance().factoryDataSource.getDaoJugador().getAll();
+			for (Jugador p : players) {
+				System.out.println("id despues: "+p.getIdClub());
+			}
+			
+
 			context.setAttribute(CLUBS, clubs);
+			
+			
+		}
 		
 		return borrado;
 	}
 
 	@Override
 	public boolean update(int id, Club objNuevo) {
-
+		boolean update = false;
 		objNuevo.setId(id);
-
-		if(delete(id))
+			
+		////TIENE QUE HACERSE SOBRE EL MISMO OBJETO
+		ArrayList<Club> clubs = getAll();
+		for(Club c: clubs)
 		{
-			ArrayList<Club> clubs = getAll();
-			clubs.add(objNuevo);
-			context.setAttribute(CLUBS, clubs);
-			return true;
+			if(c.getId() == id)
+			{
+				c.setNombre(objNuevo.getNombre());
+				c.setImg(objNuevo.getImg());
+				update = true;
+				break;
+			}
 		}
-		return false;
+		context.setAttribute(CLUBS, clubs);
+		
+		return update;
 	}
 
 	@Override

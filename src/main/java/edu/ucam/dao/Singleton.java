@@ -1,7 +1,18 @@
 package edu.ucam.dao;
 
+
 public class Singleton {
+	private static Singleton single_instance = null;
+	private Singleton() {}
+	
+	public static synchronized Singleton getInstance()
+	 {
+	     if (single_instance == null)
+	         single_instance = new Singleton();
 
-  public static FactoryDataSource factoryDataSource;
-
+	     return single_instance;
+	 }
+	
+	public FactoryDataSource factoryDataSource;
+ 
 }

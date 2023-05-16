@@ -39,7 +39,7 @@ public class ControlJugadores extends HttpServlet {
 		Jugador j;
 		String id;
 		
-		DAO<Jugador> dao = Singleton.factoryDataSource.getDaoJugador();
+		DAO<Jugador> dao = Singleton.getInstance().factoryDataSource.getDaoJugador();
 		//JugadorServletDAO dao = new JugadorServletDAO(request);
 
 		switch (action) {
@@ -48,7 +48,8 @@ public class ControlJugadores extends HttpServlet {
 			String name = request.getParameter("nombre");
 			String apellidos = request.getParameter("apellidos");
 			int goles = Integer.valueOf(request.getParameter("goles"));
-			j = new Jugador(0, name, apellidos, goles);
+			int idClub = Integer.valueOf(request.getParameter("idClub"));
+			j = new Jugador(0, name, apellidos, goles,idClub);
 
 			if (name.equals("") || apellidos.equals("")) {
 				request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre ni el apellido en blanco");
@@ -72,6 +73,7 @@ public class ControlJugadores extends HttpServlet {
 				request.setAttribute("nombre",j.getNombre());
 				request.setAttribute("apellidos",j.getApellidos());
 				request.setAttribute("goles",j.getGoles());
+				request.setAttribute("idClub",j.getIdClub());
 
 			}
 			break;
@@ -86,6 +88,7 @@ public class ControlJugadores extends HttpServlet {
 					j.setNombre(request.getParameter("nombre"));
 					j.setApellidos(request.getParameter("apellidos"));
 					j.setGoles(Integer.valueOf(request.getParameter("goles")));
+					j.setIdClub(Integer.valueOf(request.getParameter("idClub")));
 
 					if (j.getNombre().equals("") || j.getApellidos().equals("")) {
 						request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre ni el apellido en blanco");

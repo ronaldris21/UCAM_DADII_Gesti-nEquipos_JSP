@@ -3,6 +3,9 @@ package edu.ucam.dao.session;
 import java.util.ArrayList;
 
 import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
+import edu.ucam.dao.session.*;
+import edu.ucam.domain.Club;
 import edu.ucam.domain.Jugador;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,9 +30,24 @@ public class JugadorServletDAO implements DAO<Jugador>{
 			context.setAttribute(JUGADORES, new ArrayList<Jugador>());
 
 	}
+	
 	@Override
 	public ArrayList<Jugador> getAll() {
-		return (ArrayList<Jugador>)context.getAttribute(JUGADORES);
+		ArrayList<Jugador> players = (ArrayList<Jugador>)context.getAttribute(JUGADORES);
+		
+		for (Jugador player : players) {
+			if(player.getIdClub()!=0)
+			{
+				Club playerClub = Singleton.getInstance().factoryDataSource.getDaoClub().getById(player.getIdClub());
+				player.setClubName(playerClub==null ? "" : playerClub.getNombre());
+			}
+			else
+			{
+				player.setClubName("");
+			}
+		}
+		
+		return players;
 	}
 
 	@Override
@@ -56,17 +74,26 @@ public class JugadorServletDAO implements DAO<Jugador>{
 
 	@Override
 	public boolean update(int id, Jugador objNuevo) {
-
+		boolean updated = false;
 		objNuevo.setId(id);
 
-		if(delete(id))
+		////TIENE QUE HACERSE SOBRE EL MISMO OBJETO
+		ArrayList<Jugador> jugadores = getAll();
+		for(Jugador j: jugadores)
 		{
-			ArrayList<Jugador> jugadores = getAll();
-			jugadores.add(objNuevo);
-			context.setAttribute(JUGADORES, jugadores);
-			return true;
+			if(j.getId() == id)
+			{
+				j.setNombre(objNuevo.getNombre());
+				j.setApellidos(objNuevo.getApellidos());
+				j.setGoles(objNuevo.getGoles());
+				j.setIdClub(objNuevo.getIdClub());
+				updated=true;
+				break;
+			}
 		}
-		return false;
+		
+		context.setAttribute(JUGADORES, jugadores);
+		return updated;
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package edu.ucam.tags;
 
 import java.io.IOException;
 
+import edu.ucam.dao.DAO;
+import edu.ucam.dao.Singleton;
 import edu.ucam.dao.session.JugadorServletDAO;
 import edu.ucam.domain.Jugador;
 import jakarta.servlet.jsp.JspException;
@@ -20,7 +22,7 @@ public class JugadoresTag extends TagSupport {
 		String controllerName = "Jugadores";
 		String idName = "id-jugador";
 
-		JugadorServletDAO dao = new JugadorServletDAO(this.pageContext.getServletContext());
+		DAO<Jugador> dao = Singleton.getInstance().factoryDataSource.getDaoJugador();
 		for (Jugador j : dao.getAll() ) {
 			try {
 				pageContext.getOut().print("<tr>");
@@ -28,6 +30,7 @@ public class JugadoresTag extends TagSupport {
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getNombre()));
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getApellidos()));
 				pageContext.getOut().print(String.format("<td> %s </td>", j.getGoles()));
+				pageContext.getOut().print(String.format("<td> %s </td>", j.getClubName()));
 				
 				
 				///ACCIONES

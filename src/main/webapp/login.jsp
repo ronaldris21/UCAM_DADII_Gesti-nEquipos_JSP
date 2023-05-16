@@ -20,7 +20,7 @@
             <form action="Control?action=login" method="post" class="form">
 
                 <label for="username" class="username" class="label">Usuario/correo</label>
-                <input type="text" name="username" id="username" placeholder="RonaldRis21" class="input input-password">
+                <input type="text" name="username" id="username" placeholder="RonaldRis21" class="input input-password" autofocus>
                 
                 <label for="password" class="password" class="label">Contraseña</label>
                 <input id="password"  type="password" name="password"  placeholder="*********" class="input input-password">
