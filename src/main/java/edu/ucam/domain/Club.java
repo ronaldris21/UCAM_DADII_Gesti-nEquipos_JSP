@@ -17,7 +17,7 @@ public class Club implements Serializable
     private static final long serialVersionUID = 1L;
     private int id;
     private String nombre;
-    private String img;
+    
     private Hashtable<Integer, Jugador> jugadores;
 
     public Club() {
@@ -29,12 +29,9 @@ public class Club implements Serializable
         this.id = id;
         this.nombre = nombre;
     }
-    public Club(final int id, final String nombre, final String img) {
-        this.jugadores = new Hashtable<>();
-        this.id = id;
-        this.nombre = nombre;
-        this.img = img;
-    }
+ 
+        
+    
     public int getId() {
         return this.id;
     }
@@ -52,13 +49,7 @@ public class Club implements Serializable
         this.nombre = nombre;
     }
 
-    public String getImg() {
-        return this.img;
-    }
-
-    public void setImg(final String img) {
-        this.img = img;
-    }
+   
     /**
      * Anade un jugador al club
      */

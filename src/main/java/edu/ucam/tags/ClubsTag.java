@@ -29,7 +29,6 @@ public class ClubsTag extends TagSupport {
 				pageContext.getOut().print("<tr>");
 				
 				pageContext.getOut().print(String.format("<td> %s </td>", c.getNombre()));
-				pageContext.getOut().print(String.format("<td> %s </td>", c.getImg()));
 				//TODO: Imprimir Jugadores
 				
 				pageContext.getOut().print(String.format("<td>"));
@@ -44,7 +43,6 @@ public class ClubsTag extends TagSupport {
 					}
 				}
 				pageContext.getOut().print(String.format("</ul>"));
-				pageContext.getOut().print(String.format("</td>", c.getImg()));
 
 				///ACCIONES
 				pageContext.getOut().print(String.format("<td> "
