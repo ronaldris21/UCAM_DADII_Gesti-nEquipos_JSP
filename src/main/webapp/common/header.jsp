@@ -11,6 +11,9 @@
 	  <li class="nav-item">
 	    <a class="nav-link" href="<%= request.getContextPath()%>/jugadores.jsp">Jugadores</a>
 	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="<%= request.getContextPath()%>/rest.jsp">Rest</a>
+	  </li>
 	  
 	  <tags:Control_Admin>
 	   <li class="nav-item">

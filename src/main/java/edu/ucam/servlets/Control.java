@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import edu.ucam.dao.DAO;
+import edu.ucam.dao.DAOSelector;
+import edu.ucam.dao.FactoryDataSource;
 import edu.ucam.dao.Singleton;
 import edu.ucam.domain.User;
 
@@ -47,11 +49,11 @@ public class Control extends HttpServlet {
 	 */
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Entra en el doGet");
+		
 		String action = request.getParameter("action");
 		if(action==null)
 			action= "null";
-		
+		System.out.println("CONTROL ACTION = "+action);
 		String jsp = "usuarios.jsp";
 		Hashtable<String,User> data = null;
 		User u;
@@ -148,13 +150,29 @@ public class Control extends HttpServlet {
 			break;
 		case "delete": 
 			id = request.getParameter("id-user");
+			//VALIDAR QUE SEA ADMIN
+			if((request.getSession().getAttribute("EMAIL_LOGIN")==null) || !request.getSession().getAttribute("EMAIL_LOGIN").equals("admin"))
+				break;
 			
 			dao.delete(Integer.valueOf(id));
-			
 			break;
 			
 		case "null":
 			jsp="login.jsp";
+			break;
+		case "MYSQL":
+			jsp="index.jsp";
+			//INICIAR FACTORY
+			System.out.println("DAOSelector.MYSQL");
+	    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.MYSQL, request.getServletContext()); 
+	    	
+			break;
+		case "SERVLET":
+			jsp="index.jsp";
+			System.out.println("DAOSelector.SERVLET");
+			//INICIAR FACTORY
+	    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.SERVLET, request.getServletContext()); 
+	    	
 			break;
 		default:
 			jsp="usuarios.jsp";

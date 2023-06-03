@@ -15,7 +15,7 @@ import jakarta.servlet.ServletContext;
 
 public class FactoryDataSource {
 	
-	DAOSelector daoSelector = DAOSelector.SESSION;
+	DAOSelector daoSelector = DAOSelector.SERVLET;
 	
 	DAO<User> daoUser;
 	DAO<Jugador> daoJugador;
@@ -24,6 +24,7 @@ public class FactoryDataSource {
 	
 	public FactoryDataSource(DAOSelector daoSelector, ServletContext context) {
 		setDaoSelector(daoSelector, context);
+		context.setAttribute("DAOSELECTOR", daoSelector.toString());
 	}
 	
 	
@@ -43,7 +44,7 @@ public class FactoryDataSource {
 				daoClub = new  ClubMysqlDAO();
 				
 			break;
-			case SESSION:
+			case SERVLET:
 				daoJugador = new  JugadorServletDAO(context);
 				daoUser = new  UsersServletDAO(context);
 				daoClub = new  ClubServletDAO(context);

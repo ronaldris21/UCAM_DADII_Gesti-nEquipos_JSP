@@ -63,7 +63,7 @@ thead tr td:last-child {
 	justify-content: flex-end;
 	
 }
-tbody tr td:last-child {
+tbody tr th:last-child {
 	
 	display: flex;
 	justify-content: flex-end;

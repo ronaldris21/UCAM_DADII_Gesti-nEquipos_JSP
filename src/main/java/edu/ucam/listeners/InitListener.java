@@ -37,7 +37,7 @@ public class InitListener implements ServletContextListener {
     	System.out.println("CLASE: "+sce.getClass());
     	
     	//INICIAR FACTORY
-    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.MYSQL, sce.getServletContext()); 
+    	Singleton.getInstance().factoryDataSource = new FactoryDataSource(DAOSelector.SERVLET, sce.getServletContext()); 
     	
     	DAO<User> daoUsuarios = Singleton.getInstance().factoryDataSource.getDaoUser();
     	if(daoUsuarios.getAll().size() == 0)
