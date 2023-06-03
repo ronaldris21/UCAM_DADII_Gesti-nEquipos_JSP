@@ -42,9 +42,9 @@ public class ControlClubes extends HttpServlet {
 			
 			String name = request.getParameter("nombre");
 			String imagen = request.getParameter("img");
-			c = new Club(0, name, imagen);
+			c = new Club(0, name);
 			System.out.println("new");
-			if (name.equals("") || imagen.equals("")) {
+			if (name.equals("") ) {
 				request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre ni la imagen en blanco");
 				break;
 			}
@@ -66,7 +66,7 @@ public class ControlClubes extends HttpServlet {
 			{
 				request.setAttribute("id",c.getId());
 				request.setAttribute("nombre",c.getNombre());
-				request.setAttribute("img",c.getImg());
+				
 				
 			}
 			break;
@@ -79,9 +79,9 @@ public class ControlClubes extends HttpServlet {
 				c = dao.getById(Integer.valueOf(id));
 				if (c!=null) {
 					c.setNombre(request.getParameter("nombre"));
-					c.setImg(request.getParameter("img"));
+				
 					
-					if (c.getNombre().equals("") || c.getImg().equals("")) {
+					if (c.getNombre().equals("") ) {
 						request.setAttribute("ERROR_REQUEST", "No puedes dejar el nombre nila imagen en blanco");
 						jsp = "Jugadores?action=edit&id-jugador="+c.getId();
 						break;

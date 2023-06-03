@@ -88,7 +88,7 @@ public class ClubServletDAO implements DAO<Club>{
 			if(c.getId() == id)
 			{
 				c.setNombre(objNuevo.getNombre());
-				c.setImg(objNuevo.getImg());
+				
 				update = true;
 				break;
 			}

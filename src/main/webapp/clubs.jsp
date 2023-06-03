@@ -24,7 +24,7 @@
 							<h2><%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%></h2>
 							<input type="hidden" name="id-club" value="<%= request.getParameter("id-club") %>">
 							Nombre: <input required type="text" name="nombre" value="<%=request.getAttribute("nombre") != null ? request.getAttribute("nombre") : ""%>"> <br>
-							Imagen: <input required type="text" name="img" value="<%=request.getAttribute("img") != null ? request.getAttribute("img") : ""%>"> <br>
+							
 							<br>
 							<input type="submit" value="<%=request.getAttribute("nombre") != null ? "Editar" : "Agregar"%>  club" >
 							<tags:RequestErrorMessageTag></tags:RequestErrorMessageTag>
@@ -40,7 +40,6 @@
 				        <thead class="thead-dark">
 				          <tr>
 				            <th scope="col">Nombre</th>
-				            <th scope="col">Imagen</th>
 				            <th scope="col">Jugadores</th>
 				            <th scope="col">Acciones</th>
 				          </tr>

@@ -53,7 +53,7 @@ public class InitListener implements ServletContextListener {
     	if(daoClubs.getAll()== null || daoClubs.getAll().size() == 0)
     	{
     		System.out.println("Inicializar CLUBS por defecto");
-    		daoClubs.insert(new Club(1,"MADRID","null.png"));
+    		daoClubs.insert(new Club(1,"MADRID"));
     	}
     	
     	
